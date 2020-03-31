@@ -1,64 +1,12 @@
 
 
+import Navbar from '../components/shared/Navbar';
+import Hero from '../components/shared/Hero';
+
 const Home = () => (
   <div className="portfolio-app">
-    {/* NAVBAR START */}
-    <div className="navbar-wrapper">
-      <nav className="navbar navbar-expand-lg navbar-dark fj-mw9">
-        <a className="navbar-brand mr-3 font-weight-bold" href="#">FilipJerga</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav">
-            <li className="nav-item mr-3">
-              <a className="nav-link" href="#">Portfolio</a>
-            </li>
-            <li className="nav-item mr-3">
-              <a className="nav-link" href="#">Courses</a>
-            </li>
-            <li className="nav-item mr-3">
-              <a className="nav-link" href="#">Cv</a>
-            </li>
-            <li className="nav-item mr-3">
-              <a className="nav-link" href="#">Ask me</a>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item mr-3">
-              <a className="nav-link" href="#">Sign Up</a>
-            </li>
-            <li className="nav-item mr-3">
-              <a className="nav-link btn btn-success bg-green-2 bright" href="#">Sign In</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    {/* NAVBAR ENDS */}
-    {/* HERO STARTS */}
-    <section className="fj-hero">
-      <div className="fj-hero-wrapper row">
-        <div className="hero-left col-md-6">
-          <h1 className="white hero-title">Hey I'm Filip. Experienced full stack developer</h1>
-          <h2 className="white hero-subtitle">Check my portfolio and video tutorials</h2>
-          <div className="button-container">
-            <a href="" className="btn btn-main bg-blue ttu">See my work</a>
-          </div>
-        </div>
-        <div className="hero-right col-md-6">
-          <div className="hero-image-container">
-            <a className="grow hero-link">
-              <img
-                className="hero-image"
-                src="https://i.udemycdn.com/course/750x422/1652608_662b_8.jpg"></img>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    {/* HERO ENDS */}
+    <Navbar />
+    <Hero />
     <div className="container">
       {/* HOME PAGE STARTS */}
       <section className="section-title">
