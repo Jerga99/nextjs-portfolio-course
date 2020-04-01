@@ -11,7 +11,6 @@ const apiCall = () => {
 
 
 const Portfolios = (props) => {
-
   return (
     <>
       {props.testingData}

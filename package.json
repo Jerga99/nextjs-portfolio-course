@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "node server/index.js",
     "build": "next build",
     "start": "next start"
   },
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "next": "^9.3.3",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
