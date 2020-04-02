@@ -12,27 +12,38 @@ const handle = app.getRequestHandler()
 const data = {
   portfolios: [
     {
-      _id: '32dsa8d9',
-      title: 'Job in USA',
-      jobTitle: 'Chef',
-      daysOfExperience: 100,
-      isCurrentlyEmployed: false
+      _id: "sad87daasdhjdjsb",
+      title: 'Job in Netcentric',
+      company: 'Netcentric',
+      companyWebsite: 'www.google.com',
+      location: 'Spain, Barcelona',
+      jobTitle: 'Engineer',
+      description: 'Doing something, programing....',
+      startDate: '01/01/2014',
+      endDate: '01/01/2016'
     },
     {
-      _id: 'fa6dsa78',
-      title: 'Job in Barcelona',
-      content: 'It was very suny experience',
-      jobTitle: 'Developer',
-      isCurrentlyEmployed: true
+      _id: "da789ad1",
+      title: 'Job in Siemens',
+      company: 'Siemens',
+      companyWebsite: 'www.google.com',
+      location: 'Slovakia, Kosice',
+      jobTitle: 'Software Engineer',
+      description: 'Responsoble for parsing framework for JSON medical data.',
+      startDate: '01/01/2011',
+      endDate: '01/01/2013'
     },
     {
-      _id: 'asd7a8d789',
-      title: 'Job in Germany',
-      content: 'It was very good!',
-      jobTitle: 'Manager',
-      daysOfExperience: 30,
-      isCurrentlyEmployed: true
-    },
+      _id: "sadcxv9",
+      title: 'Work in USA',
+      company: 'WhoKnows',
+      companyWebsite: 'www.google.com',
+      location: 'USA, Montana',
+      jobTitle: 'Housekeeping',
+      description: 'So much responsibility....Overloaaaaaad',
+      startDate: '01/01/2010',
+      endDate: '01/01/2011'
+    }
   ]
 }
 
@@ -42,12 +53,15 @@ app.prepare().then(() => {
   // Construct a schema, using GRAPHQL schema language
   const schema = buildSchema(`
       type Porfolio {
-        _id: ID!
-        title: String
-        content: String
+        _id: ID,
+        title: String,
+        company: String,
+        companyWebsite: String,
+        location: String,
         jobTitle: String,
-        daysOfExperience: Int,
-        isCurrentlyEmployed: Boolean
+        description: String,
+        startDate: String,
+        endDate: String
       }
 
       type Query {
