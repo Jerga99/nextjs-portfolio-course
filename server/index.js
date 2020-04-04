@@ -1,7 +1,7 @@
 const express = require('express')
 const next = require('next')
-const graphqlHTTP = require('express-graphql');
-const { buildSchema } = require('graphql');
+
+const { ApolloServer, gql } = require('apollo-server-express');
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -9,7 +9,7 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 // resolvers
-const { portfolioResolvers } = require('./graphql/resolvers');
+const { portfolioQueries, portfolioMutations } = require('./graphql/resolvers');
 // types
 const { portfolioTypes } = require('./graphql/types');
 
@@ -17,7 +17,7 @@ app.prepare().then(() => {
   const server = express()
 
   // Construct a schema, using GRAPHQL schema language
-  const schema = buildSchema(`
+  const typeDefs = gql(`
       ${portfolioTypes}
 
       type Query {
@@ -32,15 +32,17 @@ app.prepare().then(() => {
   `);
 
   // The root provides a resolver for each API endpoint
-  const root = {
-    ...portfolioResolvers
+  const resolvers = {
+    Query: {
+      ...portfolioQueries
+    },
+    Mutation: {
+      ...portfolioMutations
+    }
   }
 
-  server.use('/graphql', graphqlHTTP({
-    schema,
-    rootValue: root,
-    graphiql: true
-  }));
+  const apolloServer = new ApolloServer({typeDefs, resolvers})
+  apolloServer.applyMiddleware({app: server})
 
   server.all('*', (req, res) => {
     return handle(req, res)
