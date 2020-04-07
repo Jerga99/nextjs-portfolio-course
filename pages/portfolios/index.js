@@ -3,7 +3,7 @@ import axios from 'axios'
 import PortfolioCard from '@/components/portfolios/PortfolioCard';
 import Link from 'next/link';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { GET_PORTFOLIOS, CREATE_PORTFOLIO } from '@/apollo/queries';
+import { GET_PORTFOLIOS, CREATE_PORTFOLIO, UPDATE_PORTFOLIO } from '@/apollo/queries';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 
@@ -19,37 +19,10 @@ const graphDeletePortfolio = (id) => {
     .then(data => data.deletePortfolio)
 }
 
-const graphUpdatePortfolio = (id) => {
-  const query = `
-    mutation UpdatePortfolio {
-      updatePortfolio(id: "${id}",input: {
-        title: "UPDATE Job"
-        company: "UPDATE Company"
-        companyWebsite: "UPDATE Website"
-        location: "UPDATE Location"
-        jobTitle: "UPDATE Job Title"
-        description: "UPDATE Desc"
-        startDate: "12/12/2012 UPDATE"
-        endDate: "14/11/2013 UPDATE"
-      }) {
-        _id,
-        title,
-        company,
-        companyWebsite
-        location
-        jobTitle
-        description
-        startDate
-        endDate
-      }
-    }`;
-  return axios.post('http://localhost:3000/graphql', { query })
-    .then(({data: graph}) => graph.data)
-    .then(data => data.updatePortfolio)
-}
-
 const Portfolios = () => {
   const { data } = useQuery(GET_PORTFOLIOS);
+  const [updatePortfolio] = useMutation(UPDATE_PORTFOLIO)
+  debugger
 
   const [createPortfolio] = useMutation(CREATE_PORTFOLIO, {
     update(cache, {data: {createPortfolio}}) {
@@ -60,10 +33,6 @@ const Portfolios = () => {
       })
     }
   });
-
-  const updatePortfolio = async (id) => {
-    await graphUpdatePortfolio(id);
-  }
 
   const deletePortfolio = async (id) => {
     await graphDeletePortfolio(id);
@@ -95,7 +64,7 @@ const Portfolios = () => {
               </Link>
               <button
                 className="btn btn-warning"
-                onClick={() => updatePortfolio(portfolio._id)}>Update Portfolio</button>
+                onClick={() => updatePortfolio({variables: {id: portfolio._id}})}>Update Portfolio</button>
               <button
                 onClick={() => deletePortfolio(portfolio._id)}
                 className="btn btn-danger">
