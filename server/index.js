@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const mongoose = require('mongoose');
 
 const { ApolloServer, gql } = require('apollo-server-express');
 
@@ -10,6 +11,9 @@ const handle = app.getRequestHandler()
 
 const { portfolioQueries, portfolioMutations } = require('./graphql/resolvers');
 const { portfolioTypes } = require('./graphql/types');
+
+// GraphqlModels
+const Portfolio = require('./graphql/models/Portfolio');
 
 // Connect to DB
 require('./database').connect();
@@ -43,7 +47,14 @@ app.prepare().then(() => {
     }
   }
 
-  const apolloServer = new ApolloServer({typeDefs, resolvers})
+  const apolloServer = new ApolloServer({
+    typeDefs, resolvers,
+    context: () => ({
+      models: {
+        Portfolio: new Portfolio(mongoose.model('Portfolio'))
+      }
+    })
+  })
   apolloServer.applyMiddleware({app: server})
 
   server.all('*', (req, res) => {
