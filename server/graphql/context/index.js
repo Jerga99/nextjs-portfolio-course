@@ -3,18 +3,25 @@ const passport = require('passport');
 
 // options == {email, password}
 const authenticateUser = (options) => {
-  console.log("Calling authenticateUser");
+  return new Promise((resolve, reject) => {
+    console.log("Calling authenticateUser");
 
-  const done = () => {
-    // Here we will get user if user is authenticated
-    // If we will get user we can save session to DB
-    console.log('Calling done of authenticateUser')
-  }
+    const done = (err, user) => {
+      // Here we will get user if user is authenticated
+      // If we will get user we can save session to DB
 
-  const authFn = passport.authenticate('graphql', options, done);
-  authFn();
+      if (err) {
+        return reject(new Error(err));
+      }
 
-  return true;
+      if (user) {
+        return resolve(user);
+      }
+    }
+
+    const authFn = passport.authenticate('graphql', options, done);
+    authFn();
+  })
 }
 
 
