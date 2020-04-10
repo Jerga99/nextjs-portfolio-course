@@ -17,4 +17,9 @@ exports.init = (server, db) => {
   }
 
   server.use(session(sess));
+
+  server.use((req, res, next) => {
+    req.helloWorld = () => console.log('HELLO WORLD!!!!!!!!!!');
+    next();
+  })
 }
