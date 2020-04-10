@@ -29,7 +29,7 @@ exports.createApolloServer = () => {
     deletePortfolio(id: ID): ID
 
     signUp(input: SignUpInput): String
-    signIn(input: SignInInput): String
+    signIn(input: SignInInput): User
     signOut: String
   }`);
 
