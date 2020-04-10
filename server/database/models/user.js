@@ -54,4 +54,12 @@ userSchema.pre('save', function(next) {
   });
 })
 
+userSchema.methods.validatePassword = function(candidatePassword, done) {
+  bcrypt.compare(candidatePassword, this.password, function(error, isSuccess) {
+    if (error) { return done(error); }
+
+    return done(null, isSuccess);
+  })
+}
+
 module.exports = mongoose.model('User', userSchema);
