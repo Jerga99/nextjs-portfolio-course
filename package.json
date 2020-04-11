@@ -34,6 +34,7 @@
     "passport-strategy": "^1.0.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0-beta.16",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^5.3.1"
   }
 }
