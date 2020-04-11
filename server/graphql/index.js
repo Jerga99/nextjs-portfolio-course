@@ -30,7 +30,7 @@ exports.createApolloServer = () => {
 
     signUp(input: SignUpInput): String
     signIn(input: SignInInput): User
-    signOut: String
+    signOut: Boolean
   }`);
 
   // The root provides a resolver for each API endpoint
