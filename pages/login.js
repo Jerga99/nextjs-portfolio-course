@@ -1,7 +1,15 @@
 
 import LoginForm from '@/components/forms/LoginForm';
+import withApollo from '@/hoc/withApollo';
+import { useSignIn } from '@/apollo/actions';
+import Redirect from '@/components/shared/Redirect';
 
 const Login = () => {
+
+  const [ signIn, {data, error}] = useSignIn();
+  const errorMessage = error => {
+    return (error.graphQLErrors && error.graphQLErrors[0].message) || 'Ooooops something went wrong...'
+  }
 
   return (
     <>
@@ -9,7 +17,10 @@ const Login = () => {
         <div className="row">
           <div className="col-md-5 mx-auto">
             <h1 className="page-title">Login</h1>
-            <LoginForm onSubmit={(signInData) => alert(JSON.stringify(signInData))}/>
+            <LoginForm
+              onSubmit={(signInData) => signIn({variables: signInData})}/>
+            { data && data.signIn && <Redirect to="/"/> }
+            { error && <div className="alert alert-danger">{errorMessage(error)}</div>}
           </div>
         </div>
       </div>
@@ -19,4 +30,4 @@ const Login = () => {
 
 
 
-export default Login;
+export default withApollo(Login);
