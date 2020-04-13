@@ -15,7 +15,7 @@ const Secret = withAuth(() => {
       </div>
     </>
   )
-}, 'instructor')
+}, ['instructor'])
 
 
 
