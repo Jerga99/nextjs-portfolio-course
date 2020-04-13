@@ -2,7 +2,7 @@
 import withApollo from '@/hoc/withApollo';
 import withAuth from '@/hoc/withAuth';
 
-const Secret = withAuth(({displayMessage}) => {
+const Secret = withAuth(() => {
   return (
     <>
       <div className="bwm-form mt-5">
@@ -15,7 +15,7 @@ const Secret = withAuth(({displayMessage}) => {
       </div>
     </>
   )
-})
+}, 'instructor')
 
 
 
