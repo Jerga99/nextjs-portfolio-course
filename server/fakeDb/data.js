@@ -9,7 +9,7 @@ const data = {
     {
       _id: user1Id,
       avatar: "https://f0.pngfuel.com/png/312/283/man-face-clip-art-png-clip-art-thumbnail.png",
-      email: "filip@gmail.com",
+      email: "filip99@gmail.com",
       name: "Filip Jerga",
       username: "Filip99",
       info: "Hello I am Filip and I am a developer!",
