@@ -7,6 +7,7 @@ import BaseLayout from '@/layouts/BaseLayout';
 import { Card, Button } from 'react-bootstrap';
 import { useGetUserPortfolios } from '@/apollo/actions';
 import { getDataFromTree } from '@apollo/react-ssr';
+import Link from 'next/link';
 
 const InstructorDashboard = withAuth(() => {
   const { data } = useGetUserPortfolios();
@@ -20,7 +21,7 @@ const InstructorDashboard = withAuth(() => {
           <div className="col-md-12">
             <h1 className="page-title">Instructor Portfolios</h1>
             { userPortfolios.map(p =>
-              <Card key={p._id}>
+              <Card key={p._id} className="mb-2">
                 <Card.Header>{p.jobTitle}</Card.Header>
                 <Card.Body>
                   <Card.Title>{p.title}</Card.Title>
@@ -28,7 +29,15 @@ const InstructorDashboard = withAuth(() => {
                     {p.startDate} - {p.endDate}
                   </Card.Text>
                   {/* TODO: Delete Update Buttons */}
-                  <Button variant="primary">Go somewhere</Button>
+                  <Link
+                    href="/portfolios/[id]/edit"
+                    as={`/portfolios/${p._id}/edit`}>
+                    <a className="btn btn-warning mr-1">Update</a>
+                  </Link>
+                  <Button
+                    onClick={() => alert('Deleting')}
+                    variant="danger">Delete
+                  </Button>
                 </Card.Body>
               </Card>
               )

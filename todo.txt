@@ -5,3 +5,4 @@
 2. Display message when pushed to login page
 3. Invariant Violation: Can't find field portfolios
 4. Dates Format
+5. Implement server side redirect - maybe
