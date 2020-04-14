@@ -33,16 +33,25 @@ export const GET_PORTFOLIOS = gql`
   }`;
 
 export const CREATE_PORTFOLIO = gql`
-  mutation CreatePortfolio {
+  mutation CreatePortfolio(
+    $title: String
+    $company: String
+    $companyWebsite: String
+    $location: String
+    $jobTitle: String
+    $description: String
+    $startDate: String
+    $endDate: String
+  ) {
     createPortfolio(input: {
-      title: "New Job"
-      company: "New Company"
-      companyWebsite: "New Website"
-      location: "New Location"
-      jobTitle: "New Job Title"
-      description: "New Desc"
-      startDate: "2012-12-12T23:59Z"
-      endDate: "2013-11-14T23:59Z"
+      title: $title
+      company: $company
+      companyWebsite: $companyWebsite
+      location: $location
+      jobTitle: $jobTitle
+      description: $description
+      startDate: $startDate
+      endDate: $endDate
     }) {
       _id,
       title,
