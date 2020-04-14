@@ -32,6 +32,18 @@ export const GET_PORTFOLIOS = gql`
     }
   }`;
 
+export const GET_USER_PORTFOLIOS = gql`
+  query UserPortfolios {
+    userPortfolios {
+      _id
+      title
+      jobTitle
+      startDate
+      endDate
+    }
+  }
+`;
+
 export const CREATE_PORTFOLIO = gql`
   mutation CreatePortfolio(
     $title: String
