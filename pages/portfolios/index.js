@@ -10,7 +10,7 @@ import BaseLayout from '@/layouts/BaseLayout';
 const Portfolios = () => {
   const { data } = useGetPortfolios();
   const portfolios = data && data.portfolios || [];
-  debugger
+
   return (
     <BaseLayout>
       <section className="section-title">
