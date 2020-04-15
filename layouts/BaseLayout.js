@@ -2,6 +2,7 @@
 
 import Navbar from '../components/shared/Navbar';
 import Hero from '../components/shared/Hero';
+import { ToastContainer } from 'react-toastify';
 
 const BaseLayout = ({children, page = ''}) => {
 
@@ -23,6 +24,7 @@ const BaseLayout = ({children, page = ''}) => {
         </footer>
       }
       {/* FOOTER ENDS */}
+      <ToastContainer />
     </div>
   )
 }

@@ -6,6 +6,7 @@ import withAuth from '@/hoc/withAuth';
 import BaseLayout from '@/layouts/BaseLayout';
 import { useRouter } from 'next/router';
 import { useGetPortfolio, useUpdatePortfolio } from '@/apollo/actions';
+import { toast } from 'react-toastify';
 
 const PortfolioEdit = () => {
   const router = useRouter();
@@ -17,6 +18,11 @@ const PortfolioEdit = () => {
     return (error.graphQLErrors && error.graphQLErrors[0].message) || 'Ooooops something went wrong...'
   }
 
+  const handlePortfolioUpdate = async (data) => {
+    await updatePortfolio({variables: {id, ...data}});
+    toast.success('Portfolio has been updated!', {autoClose: 2000});
+  }
+
   return (
     <BaseLayout>
       <div className="bwm-form mt-5">
@@ -26,7 +32,7 @@ const PortfolioEdit = () => {
             { data &&
               <PortfolioForm
                 initialData={data.portfolio}
-                onSubmit={(data) => updatePortfolio({variables: {id, ...data}})} />
+                onSubmit={handlePortfolioUpdate} />
             }
              { error && <div className="alert alert-danger">{errorMessage(error)}</div>}
           </div>
