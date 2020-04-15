@@ -47,7 +47,7 @@ const InstructorDashboard = withAuth(() => {
       </div>
     </BaseLayout>
   )
-}, ['admin', 'instructor'])
+}, ['admin', 'instructor'], {ssr: true})
 
 export default withApollo(InstructorDashboard, {getDataFromTree});
 
