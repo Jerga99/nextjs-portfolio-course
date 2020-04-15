@@ -1,4 +1,5 @@
 
+import { useEffect, useRef } from 'react';
 import LoginForm from '@/components/forms/LoginForm';
 import withApollo from '@/hoc/withApollo';
 import { useSignIn } from '@/apollo/actions';
@@ -8,9 +9,27 @@ import BaseLayout from '@/layouts/BaseLayout';
 import messages from '@/variables/messages';
 
 const Login = () => {
+  const disposeId = useRef(null);
   const [ signIn, {data, loading, error}] = useSignIn();
   const router = useRouter();
   const { message } = router.query;
+
+  const disposeMessage = () => {
+    router.replace('/login', '/login', {shallow: true});
+  }
+
+  useEffect(() => {
+    if (message) {
+      disposeId.current = setTimeout(() => {
+        disposeMessage();
+      }, 3000 )
+    }
+
+    return () => {
+      clearTimeout(disposeId.current)
+    }
+  }, [message])
+
   const errorMessage = error => {
     return (error.graphQLErrors && error.graphQLErrors[0].message) || 'Ooooops something went wrong...'
   }

@@ -2,7 +2,7 @@
 
 
 1. Fix transitions on redirects | Implement server side redirect | DONE
-2. Display message when pushed to login page
+2. Display message when pushed to login page | DONE
 3. Invariant Violation: Can't find field portfolios | FIXED
 4. Dates Format - DONE
 5. Compute days of experience on client - DONE
