@@ -10,7 +10,8 @@ import {
   SIGN_IN,
   SIGN_OUT,
   GET_USER,
-  FORUM_CATEGORIES
+  FORUM_CATEGORIES,
+  TOPICS_BY_CATEGORY
 } from '@/apollo/queries'
 
 
@@ -59,5 +60,5 @@ export const useGetUser = () => useQuery(GET_USER)
 
 // Forum actions Start -----------------------
 export const useGetForumCategories = () => useQuery(FORUM_CATEGORIES)
-
+export const useGetTopicsByCategory = (options) => useQuery(TOPICS_BY_CATEGORY, options)
 // Forum actions End -----------------------
