@@ -170,3 +170,21 @@ export const GET_USER = gql`
 
 
 // AUTH QUERIES END ----------------------------
+
+
+
+// FORUM QUERIES START ---------------------------
+
+export const FORUM_CATEGORIES = gql`
+  query ForumCategories {
+    forumCategories {
+      slug
+      title
+      subTitle
+    }
+  }
+`
+
+
+
+// FORUM QUERIES END ---------------------------
