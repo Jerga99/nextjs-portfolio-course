@@ -7,4 +7,4 @@
 4. Dates Format - DONE
 5. Compute days of experience on client - DONE
 
-6. Display Loader
+6. Display Loader - DONE
