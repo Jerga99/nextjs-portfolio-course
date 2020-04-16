@@ -1,6 +1,6 @@
 
 
-
+const slugify = require('slugify')
 
 class Topic {
 
@@ -23,7 +23,12 @@ class Topic {
 
     topicData.user = this.user;
     // generateSlug
-    topicData.slug =  "doesnt-matter";
+    topicData.slug =  slugify(topicData.title, {
+      replacement: '-',
+      remove: undefined,
+      lower: true,
+      strict: false,
+    });
 
     const createdTopic = await this.Model.create(topicData);
     return this.Model.findById(createdTopic._id).populate('user').populate('forumCategory');
