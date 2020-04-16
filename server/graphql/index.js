@@ -6,18 +6,21 @@ const {
   portfolioQueries,
   portfolioMutations,
   userMutations,
-  userQueries } = require('./resolvers');
-const { portfolioTypes, userTypes } = require('./types');
+  userQueries,
+  forumQueries } = require('./resolvers');
+const { portfolioTypes, userTypes, forumTypes } = require('./types');
 const { buildAuthContext } = require('./context');
 
 const Portfolio = require('./models/Portfolio');
 const User = require('./models/User');
+const ForumCategory = require('./models/ForumCategory');
 
 exports.createApolloServer = () => {
   // Construct a schema, using GRAPHQL schema language
   const typeDefs = gql(`
   ${portfolioTypes}
   ${userTypes}
+  ${forumTypes}
 
   type Query {
     portfolio(id: ID): Portfolio
@@ -25,6 +28,8 @@ exports.createApolloServer = () => {
     userPortfolios: [Portfolio]
 
     user: User
+
+    forumCategories: [ForumCategory]
   }
 
   type Mutation {
@@ -41,7 +46,8 @@ exports.createApolloServer = () => {
   const resolvers = {
     Query: {
       ...portfolioQueries,
-      ...userQueries
+      ...userQueries,
+      ...forumQueries
     },
     Mutation: {
       ...portfolioMutations,
@@ -55,7 +61,8 @@ exports.createApolloServer = () => {
       ...buildAuthContext(req),
       models: {
         Portfolio: new Portfolio(mongoose.model('Portfolio'), req.user),
-        User: new User(mongoose.model('User'))
+        User: new User(mongoose.model('User')),
+        ForumCategory: new ForumCategory(mongoose.model('ForumCategory'))
       }
     })
   })
