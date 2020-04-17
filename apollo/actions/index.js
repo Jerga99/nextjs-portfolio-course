@@ -12,7 +12,8 @@ import {
   GET_USER,
   FORUM_CATEGORIES,
   TOPICS_BY_CATEGORY,
-  CREATE_TOPIC
+  CREATE_TOPIC,
+  TOPIC_BY_SLUG
 } from '@/apollo/queries'
 
 
@@ -61,7 +62,9 @@ export const useGetUser = () => useQuery(GET_USER)
 
 // Forum actions Start -----------------------
 export const useGetForumCategories = () => useQuery(FORUM_CATEGORIES)
+
 export const useGetTopicsByCategory = (options) => useQuery(TOPICS_BY_CATEGORY, options)
+export const useGetTopicBySlug = options => useQuery(TOPIC_BY_SLUG, options)
 
 export const useCreateTopic = () => useMutation(CREATE_TOPIC, {
   update(cache, {data: {createTopic}}) {
