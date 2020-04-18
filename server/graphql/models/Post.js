@@ -14,7 +14,7 @@ class Post {
       .find({topic})
       .populate('topic')
       .populate('user')
-      .populate('parent')
+      .populate({path: 'parent', populate: 'user'})
   }
 
 }
