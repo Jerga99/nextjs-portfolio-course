@@ -46,6 +46,8 @@ exports.createApolloServer = () => {
 
     createTopic(input: TopicInput): Topic
 
+    createPost(input: PostInput): Post
+
     signUp(input: SignUpInput): String
     signIn(input: SignInInput): User
     signOut: Boolean
