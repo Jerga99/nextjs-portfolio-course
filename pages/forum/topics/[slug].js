@@ -12,6 +12,7 @@ import { getDataFromTree } from '@apollo/react-ssr';
 import PostItem from '@/components/forum/PostItem';
 import Replier from '@/components/shared/Replier';
 import { toast } from 'react-toastify';
+import AppPagination from '@/components/shared/Pagination';
 
 const useInitialData = () => {
   const router = useRouter();
@@ -108,6 +109,9 @@ const Posts = ({posts, topic, user}) => {
                 </button>
               </div>
             }
+            <div className="pagination-container ml-auto">
+              <AppPagination />
+            </div>
           </div>
         </div>
       </div>
