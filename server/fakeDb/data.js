@@ -37,7 +37,7 @@ const data = {
     },
     {
       _id: user2Id,
-      avatar: "https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png",
+      avatar: "https://img.favpng.com/17/3/18/computer-icons-user-profile-male-png-favpng-ZmC9dDrp9x27KFnnge0jKWKBs.jpg",
       email: "test@gmail.com",
       name: "Test User",
       username: "Test99",
