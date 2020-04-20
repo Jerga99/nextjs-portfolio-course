@@ -3,7 +3,7 @@
 import Pagination from "react-js-pagination";
 
 
-const AppPagination = ({count, pageSize, pageNum, onChange}) => {
+const AppPagination = ({count, pageSize, pageNum, onPageChange}) => {
   return (
     <Pagination
       itemClass="page-item"
@@ -12,7 +12,7 @@ const AppPagination = ({count, pageSize, pageNum, onChange}) => {
       itemsCountPerPage={pageSize}
       totalItemsCount={count}
       pageRangeDisplayed={5}
-      onChange={page => onChange(page, pageSize)}
+      onChange={page => onPageChange(page, pageSize)}
     />
   )
 }
