@@ -12,7 +12,7 @@ const BaseLayout = ({children, page = ''}) => {
     <div className="portfolio-app">
       <Navbar />
       { isHomePage() && <Hero /> }
-      <div className="container">
+      <div className="container mb-5">
         {children}
       </div>
       {/* FOOTER STARTS */}
