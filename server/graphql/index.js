@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
 
 const {
+  mixedQueries,
   portfolioQueries,
   portfolioMutations,
   userMutations,
@@ -30,13 +31,13 @@ exports.createApolloServer = () => {
     userPortfolios: [Portfolio]
 
     user: User
-
     forumCategories: [ForumCategory]
 
     topicsByCategory(category: String): [Topic]
     topicBySlug(slug: String): Topic
-
     postsByTopic(slug: String, pageNum: Int, pageSize: Int): PagPosts
+
+    highlight(limit: Int): HighlightRes
   }
 
   type Mutation {
@@ -58,7 +59,8 @@ exports.createApolloServer = () => {
     Query: {
       ...portfolioQueries,
       ...userQueries,
-      ...forumQueries
+      ...forumQueries,
+      ...mixedQueries
     },
     Mutation: {
       ...portfolioMutations,

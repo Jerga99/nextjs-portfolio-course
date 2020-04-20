@@ -95,4 +95,9 @@ exports.forumTypes = `
     parent: String
     topic: String
   }
+
+  type HighlightRes {
+    portfolios: [Portfolio]
+    topics: [Topic]
+  }
 `
