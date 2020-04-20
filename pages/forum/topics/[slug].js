@@ -16,7 +16,8 @@ import AppPagination from '@/components/shared/Pagination';
 
 const useInitialData = (slug, pagination) => {
   const { data: dataT } = useGetTopicBySlug({variables: { slug }});
-  const { data: dataP, fetchMore } = useGetPostsByTopic({variables: { slug, ...pagination }});
+  const { data: dataP, fetchMore } = useGetPostsByTopic(
+    {variables: { slug, ...pagination }, pollInterval: 5000});
   const { data: dataU } = useGetUser();
   const topic = (dataT && dataT.topicBySlug) || {};
   const postData = (dataP && dataP.postsByTopic) || { posts: [], count: 0 };
