@@ -2,13 +2,9 @@
 
 const uniqueSlug = require('unique-slug');
 const moment = require('moment');
+const BaseModel = require('./BaseModel');
 
-class Post {
-
-  constructor(model, user) {
-    this.Model = model;
-    this.user = user;
-  }
+class Post extends BaseModel {
 
   async getAllByTopic({topic, pageNum = 1, pageSize = 5}) {
 
