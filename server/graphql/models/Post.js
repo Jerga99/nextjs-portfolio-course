@@ -10,13 +10,16 @@ class Post {
     this.user = user;
   }
 
-  getAllByTopic(topic) {
-    return this.Model
+  async getAllByTopic(topic) {
+    const count = await this.Model.countDocuments({topic});
+    const posts = await this.Model
       .find({topic})
       .sort('createdAt')
       .populate('topic')
       .populate('user')
       .populate({path: 'parent', populate: 'user'})
+
+    return { posts, count };
   }
 
   async create(post) {

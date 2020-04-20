@@ -255,7 +255,10 @@ const postResponse = `
 export const POSTS_BY_TOPIC = gql`
     query PostsByTopic($slug: String) {
       postsByTopic(slug: $slug) {
-        ${postResponse}
+        posts {
+          ${postResponse}
+        }
+        count
       }
     }
 `
