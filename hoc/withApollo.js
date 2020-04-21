@@ -16,7 +16,7 @@ export default withApollo(
           headers
         })
       },
-      uri: 'http://localhost:3000/graphql',
+      uri: process.env.BASE_URL,
       cache: new InMemoryCache().restore(initialState || {}),
       resolvers: {
         Portfolio: {
