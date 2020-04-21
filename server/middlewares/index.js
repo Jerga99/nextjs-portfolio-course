@@ -1,5 +1,5 @@
 
-const config = require('../config/dev');
+const config = require('../config');
 const session = require('express-session');
 const passport = require('passport');
 

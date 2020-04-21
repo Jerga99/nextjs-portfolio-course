@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-const config = require('../config/dev');
+const config = require('../config');
 
 require('./models/portfolio');
 require('./models/user');
