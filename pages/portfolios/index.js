@@ -27,7 +27,7 @@ const Portfolios = () => {
               <Link
                 href='/portfolios/[id]'
                 as={`/portfolios/${portfolio._id}`}>
-                <a className="card-link">
+                <a className="card-link mb-2">
                   <PortfolioCard portfolio={portfolio} />
                 </a>
               </Link>
