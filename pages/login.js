@@ -53,6 +53,4 @@ const Login = () => {
   )
 }
 
-
-
 export default withApollo(Login);
