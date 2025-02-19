@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 const TopicLink = ({topic}) =>
   <Link
+    legacyBehavior
     href="/forum/topics/[slug]"
     as={`/forum/topics/${topic.slug}`}>
     <a className="mb-1 list-group-item list-group-item-action flex-column align-items-start py-3 subtle-shadow no-border">

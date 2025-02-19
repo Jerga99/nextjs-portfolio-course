@@ -10,20 +10,23 @@ const handle = app.getRequestHandler()
 const db = require('./database')
 db.connect();
 
-app.prepare().then(() => {
+app.prepare().then(async () => { // Make callback async
   const server = express();
 
+  // Add essential middleware first
+  server.use(express.json());
   require('./middlewares').init(server, db);
 
-  const apolloServer = require('./graphql').createApolloServer();
-  apolloServer.applyMiddleware({app: server})
+  // Initialize Apollo Server
+  const { middleware } = await require('./graphql').createApolloServer();
 
-  server.all('*', (req, res) => {
-    return handle(req, res)
-  })
+  // Apply Apollo middleware
+  server.use('/graphql', middleware);
+
+  server.all('*', (req, res) => handle(req, res));
 
   server.listen(port, err => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
-  })
-})
+    if (err) throw err;
+    console.log(`> Ready on http://localhost:${port}`);
+  });
+});

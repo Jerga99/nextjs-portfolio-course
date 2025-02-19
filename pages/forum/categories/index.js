@@ -27,6 +27,7 @@ const ForumCategories = () => {
             <div key={fc.slug} className="col-md-4">
               <div className="fj-category-container">
                 <Link
+                  legacyBehavior
                   href="/forum/categories/[slug]"
                   as={`/forum/categories/${fc.slug}`}>
                   <a className="fj-category subtle-shadow no-border">

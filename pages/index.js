@@ -33,6 +33,7 @@ const Home = () => {
           { portfolios.map(portfolio =>
             <div key={portfolio._id} className="col-md-4">
               <Link
+                legacyBehavior
                 href="/portfolios/[id]"
                 as={`/portfolios/${portfolio._id}`}>
                 <a className="card-link">
@@ -44,7 +45,7 @@ const Home = () => {
           }
         </div>
       </section>
-      <Link href="/portfolios">
+      <Link legacyBehavior href="/portfolios">
         <a className="btn btn-main bg-blue ttu">See More Portfolios</a>
       </Link>
       <section className="section-title">
@@ -64,7 +65,7 @@ const Home = () => {
           }
         </div>
       </section>
-      <Link href="/forum/categories">
+      <Link legacyBehavior href="/forum/categories">
         <a className="btn btn-main bg-blue ttu">See More Posts</a>
       </Link>
       {/* HOME PAGE ENDS */}

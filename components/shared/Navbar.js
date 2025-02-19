@@ -6,7 +6,7 @@ import withApollo from '@/hoc/withApollo';
 import { useLazyGetUser } from '@/apollo/actions';
 
 const AppLink = ({children, className, href, as}) =>
-  <Link href={href} as={as}>
+  <Link legacyBehavior href={href} as={as}>
     <a className={className}>{children}</a>
   </Link>
 

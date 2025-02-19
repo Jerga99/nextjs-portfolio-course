@@ -25,6 +25,7 @@ const Portfolios = () => {
           { portfolios.map(portfolio =>
             <div key={portfolio._id} className="col-md-4">
               <Link
+                legacyBehavior
                 href='/portfolios/[id]'
                 as={`/portfolios/${portfolio._id}`}>
                 <a className="card-link mb-2">

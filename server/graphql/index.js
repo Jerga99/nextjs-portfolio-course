@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('@apollo/server');
+const { expressMiddleware } = require('@apollo/server/express4');
 
 const {
   mixedQueries,
@@ -18,9 +19,9 @@ const ForumCategory = require('./models/ForumCategory');
 const Topic = require('./models/Topic');
 const Post = require('./models/Post');
 
-exports.createApolloServer = () => {
+exports.createApolloServer = async () => {
   // Construct a schema, using GRAPHQL schema language
-  const typeDefs = gql(`
+  const typeDefs = `
   ${portfolioTypes}
   ${userTypes}
   ${forumTypes}
@@ -52,7 +53,7 @@ exports.createApolloServer = () => {
     signUp(input: SignUpInput): String
     signIn(input: SignInInput): User
     signOut: Boolean
-  }`);
+  }`;
 
   // The root provides a resolver for each API endpoint
   const resolvers = {
@@ -69,19 +70,26 @@ exports.createApolloServer = () => {
     }
   }
 
-  const apolloServer = new ApolloServer({
-    typeDefs, resolvers,
-    context: ({req}) => ({
-      ...buildAuthContext(req),
-      models: {
-        Portfolio: new Portfolio(mongoose.model('Portfolio'), req.user),
-        User: new User(mongoose.model('User')),
-        ForumCategory: new ForumCategory(mongoose.model('ForumCategory')),
-        Topic: new Topic(mongoose.model('Topic'), req.user),
-        Post: new Post(mongoose.model('Post'), req.user),
-      }
-    })
-  })
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
 
-  return apolloServer;
+  await server.start();
+
+  return {
+    server,
+    middleware: expressMiddleware(server, {
+      context: ({ req }) => ({
+        ...buildAuthContext(req),
+        models: {
+          Portfolio: new Portfolio(mongoose.model('Portfolio'), req.user),
+          User: new User(mongoose.model('User')),
+          ForumCategory: new ForumCategory(mongoose.model('ForumCategory')),
+          Topic: new Topic(mongoose.model('Topic'), req.user),
+          Post: new Post(mongoose.model('Post'), req.user),
+        }
+      })
+    })
+  };
 }

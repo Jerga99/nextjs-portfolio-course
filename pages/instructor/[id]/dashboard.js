@@ -30,6 +30,7 @@ const InstructorDashboard = withAuth(() => {
                   </Card.Text>
                   {/* TODO: Delete Update Buttons */}
                   <Link
+                    legacyBehavior
                     href="/portfolios/[id]/edit"
                     as={`/portfolios/${p._id}/edit`}>
                     <a className="btn btn-warning mr-1">Update</a>

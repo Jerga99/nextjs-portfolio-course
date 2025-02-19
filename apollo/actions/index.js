@@ -1,5 +1,5 @@
 
-import { useQuery, useMutation, useLazyQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 import {
   GET_PORTFOLIOS,
   GET_PORTFOLIO,
